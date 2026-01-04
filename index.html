@@ -3531,11 +3531,21 @@
             <button class="search-btn" id="searchBtn" aria-label="Search">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="profile-settings-btn" id="profileSettingsBtn">
-                <i class="fas fa-cog"></i>
-            </button>
         </div>
     </header>
+
+    <!-- Search Panel -->
+    <div class="search-panel" id="searchPanel" aria-hidden="true">
+        <div class="panel-inner">
+            <div class="search-header">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search users...">
+                <button class="close-search" aria-label="Close search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
 
     <!-- Toggle Section -->
     <div class="toggle-section">
@@ -3690,9 +3700,6 @@
                 </div>
             </div>
             <div class="profile-actions">
-                <button class="profile-action-btn" id="settingsBtn">
-                    <i class="fas fa-cog"></i>
-                </button>
                 <button class="profile-action-btn" id="editProfileBtn">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
@@ -5465,19 +5472,7 @@
                         messageUserList.style.display = 'block';
                         messageThread.classList.remove('active');
                     }
-                    
-                    // Show/hide profile settings button
-                    if (targetScreen === 'profileScreen') {
-                        profileSettingsBtn.style.display = 'block';
-                    } else {
-                        profileSettingsBtn.style.display = 'none';
-                    }
                 });
-            });
-
-            // Profile settings button
-            profileSettingsBtn.addEventListener('click', () => {
-                showScreen('settingsScreen');
             });
 
             // Hamburger menu
@@ -6043,11 +6038,6 @@
                     searchResults.appendChild(item);
                 });
             }
-
-            // Settings button
-            settingsBtn.addEventListener('click', () => {
-                showScreen('settingsScreen');
-            });
 
             // Edit Profile button
             editProfileBtn.addEventListener('click', () => {
