@@ -65,12 +65,41 @@
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             gap: 12px;
         }
 
         .dark-mode .app-header {
             background-color: var(--dark-bg);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hamburger-menu {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--light-text);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .hamburger-menu:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .hamburger-menu {
+            color: var(--dark-text);
+        }
+
+        .dark-mode .hamburger-menu:hover {
+            background-color: var(--dark-elements);
         }
 
         .app-logo {
@@ -88,6 +117,72 @@
 
         .dark-mode .app-name {
             color: var(--dark-accent);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Toggle Section */
+        .toggle-section {
+            background-color: var(--light-bg);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--light-border);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .dark-mode .toggle-section {
+            background-color: var(--dark-bg);
+            border-bottom-color: var(--dark-border);
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--light-text);
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+
+        .toggle-btn.active {
+            color: var(--light-accent);
+        }
+
+        .toggle-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background-color: var(--light-accent);
+            border-radius: 2px;
+        }
+
+        .dark-mode .toggle-btn.active {
+            color: var(--dark-accent);
+        }
+
+        .dark-mode .toggle-btn.active::after {
+            background-color: var(--dark-accent);
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .toggle-btn:hover {
+            background-color: var(--dark-elements);
         }
 
         .profile-settings-btn {
@@ -190,6 +285,699 @@
         .dark-mode .search-item:hover { background: rgba(255,255,255,0.02); }
         .search-item .body { font-size:0.95rem; }
         .search-item .muted { color: #888; font-size:0.85rem; }
+
+        /* Hamburger Menu Overlay */
+        .hamburger-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .hamburger-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--light-bg);
+            box-shadow: var(--shadow);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hamburger-overlay[style*="display: flex"] .hamburger-content {
+            transform: translateX(0);
+        }
+
+        .dark-mode .hamburger-content {
+            background-color: var(--dark-bg);
+        }
+
+        .hamburger-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-border);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .dark-mode .hamburger-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .close-hamburger {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-hamburger:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .close-hamburger {
+            color: var(--dark-text);
+        }
+
+        .dark-mode .close-hamburger:hover {
+            background-color: var(--dark-elements);
+        }
+
+        .hamburger-menu-items {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .hamburger-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--light-text);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .hamburger-item:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .hamburger-item {
+            color: var(--dark-text);
+        }
+
+        .dark-mode .hamburger-item:hover {
+            background-color: var(--dark-elements);
+        }
+
+        .hamburger-item i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Screen */
+        .contact-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--light-accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .contact-submit-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-2px);
+        }
+
+        /* Premium Screen */
+        .premium-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .premium-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .premium-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .premium-card {
+            background-color: var(--light-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--light-border);
+            transition: var(--transition);
+        }
+
+        .dark-mode .premium-card {
+            background-color: var(--dark-card);
+            border-color: var(--dark-border);
+        }
+
+        .gold-card {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #FFF8DC 0%, var(--light-card) 100%);
+        }
+
+        .dark-mode .gold-card {
+            background: linear-gradient(135deg, #2A2A1A 0%, var(--dark-card) 100%);
+        }
+
+        .ultra-card {
+            border-color: #FF6B35;
+            background: linear-gradient(135deg, #FFF0F0 0%, var(--light-card) 100%);
+        }
+
+        .dark-mode .ultra-card {
+            background: linear-gradient(135deg, #2A1A1A 0%, var(--dark-card) 100%);
+        }
+
+        .premium-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .premium-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--light-text);
+        }
+
+        .dark-mode .premium-header h3 {
+            color: var(--dark-text);
+        }
+
+        .premium-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--light-accent);
+        }
+
+        .premium-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .dark-mode .premium-price {
+            color: var(--dark-accent);
+        }
+
+        .premium-features {
+            margin-bottom: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+
+        .dark-mode .feature-item {
+            color: var(--dark-text);
+        }
+
+        .feature-item i {
+            color: #4CAF50;
+            font-size: 0.9rem;
+        }
+
+        .premium-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gold-btn {
+            background-color: #FFD700;
+            color: #333;
+        }
+
+        .gold-btn:hover {
+            background-color: #FFC107;
+            transform: translateY(-2px);
+        }
+
+        .ultra-btn {
+            background-color: #FF6B35;
+            color: white;
+        }
+
+        .ultra-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-2px);
+        }
+
+        /* Contest Screen */
+        .contest-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contest-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--light-accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .contest-submit-btn:hover {
+            background-color: #e63900;
+            transform: translateY(-2px);
+        }
+
+        /* Credits Screen */
+        .credits-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .credits-content {
+            display: grid;
+            gap: 16px;
+        }
+
+        .credit-item {
+            background-color: var(--light-card);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-border);
+        }
+
+        .dark-mode .credit-item {
+            background-color: var(--dark-card);
+            border-color: var(--dark-border);
+        }
+
+        .credit-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--light-accent);
+            margin-bottom: 8px;
+        }
+
+        .dark-mode .credit-item h3 {
+            color: var(--dark-accent);
+        }
+
+        .credit-item p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+
+        .dark-mode .credit-item p {
+            color: var(--dark-text);
+        }
+
+        /* Popups */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-overlay.open {
+            display: flex;
+        }
+
+        .popup-content {
+            background-color: var(--light-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--light-border);
+        }
+
+        .large-popup .popup-content {
+            max-width: 600px;
+        }
+
+        .dark-mode .popup-content {
+            background-color: var(--dark-card);
+            border-color: var(--dark-border);
+        }
+
+        .popup-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dark-mode .popup-header {
+            border-bottom-color: var(--dark-border);
+        }
+
+        .popup-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        .dark-mode .popup-header h3 {
+            color: var(--dark-text);
+        }
+
+        .popup-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .popup-close:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .popup-close {
+            color: var(--dark-text);
+        }
+
+        .dark-mode .popup-close:hover {
+            background-color: var(--dark-elements);
+        }
+
+        .popup-body {
+            padding: 20px;
+        }
+
+        .popup-body p {
+            margin-bottom: 16px;
+            color: var(--light-text);
+        }
+
+        .dark-mode .popup-body p {
+            color: var(--dark-text);
+        }
+
+        .report-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .report-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .report-option:hover {
+            background-color: var(--light-elements);
+        }
+
+        .dark-mode .report-option:hover {
+            background-color: var(--dark-elements);
+        }
+
+        .report-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .report-option span {
+            font-weight: 500;
+            color: var(--light-text);
+        }
+
+        .dark-mode .report-option span {
+            color: var(--dark-text);
+        }
+
+        .report-details {
+            margin-top: 16px;
+        }
+
+        .report-details label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light-text);
+        }
+
+        .dark-mode .report-details label {
+            color: var(--dark-text);
+        }
+
+        .report-details textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--light-border);
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .dark-mode .report-details textarea {
+            background-color: var(--dark-elements);
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        .popup-footer {
+            padding: 20px;
+            border-top: 1px solid var(--light-border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .dark-mode .popup-footer {
+            border-top-color: var(--dark-border);
+        }
+
+        .popup-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .cancel-btn {
+            background-color: var(--light-elements);
+            color: var(--light-text);
+        }
+
+        .cancel-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dark-mode .cancel-btn {
+            background-color: var(--dark-elements);
+            color: var(--dark-text);
+        }
+
+        .dark-mode .cancel-btn:hover {
+            background-color: #3a3a3a;
+        }
+
+        .confirm-btn {
+            background-color: var(--light-accent);
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background-color: #e63900;
+        }
+
+        .dark-mode .confirm-btn {
+            background-color: var(--dark-accent);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .app-header {
+                padding: 12px 16px;
+            }
+
+            .header-left {
+                gap: 8px;
+            }
+
+            .app-logo {
+                height: 32px;
+                width: 32px;
+            }
+
+            .app-name {
+                font-size: 1.3rem;
+            }
+
+            .toggle-section {
+                padding: 8px 16px;
+            }
+
+            .toggle-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .poll-card {
+                margin-bottom: 16px;
+                padding: 16px;
+            }
+
+            .poll-question {
+                font-size: 1.1rem;
+            }
+
+            .poll-option {
+                padding: 12px 14px;
+            }
+
+            .engagement-item {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .hamburger-content {
+                width: 250px;
+            }
+
+            .premium-cards {
+                gap: 16px;
+            }
+
+            .premium-card {
+                padding: 20px;
+            }
+
+            .premium-price {
+                font-size: 1.8rem;
+            }
+
+            .popup-content {
+                margin: 20px;
+                width: calc(100% - 40px);
+                max-width: none;
+            }
+
+            .large-popup .popup-content {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+
+            .hamburger-menu-items {
+                padding: 16px 0;
+            }
+
+            .hamburger-item {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header {
+                padding: 10px 12px;
+            }
+
+            .toggle-section {
+                padding: 6px 12px;
+            }
+
+            .poll-card {
+                padding: 14px;
+                margin-bottom: 12px;
+            }
+
+            .poll-header {
+                margin-bottom: 12px;
+            }
+
+            .poll-question {
+                font-size: 1rem;
+                margin-bottom: 14px;
+            }
+
+            .engagement-bar {
+                padding-top: 10px;
+            }
+
+            .engagement-item {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+
+            .premium-card {
+                padding: 16px;
+            }
+
+            .premium-header h3 {
+                font-size: 1.3rem;
+            }
+
+            .feature-item {
+                font-size: 0.9rem;
+            }
+
+            .popup-content {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+        }
 
         /* Navigation */
         .bottom-nav {
@@ -2526,25 +3314,58 @@
 <body>
     <!-- App Header -->
     <header class="app-header">
-        <img src="kalesh logo.png" alt="Kalesh Logo" class="app-logo">
-        <h1 class="app-name">Kalesh</h1>
-        <button class="search-btn" id="searchBtn" aria-label="Search">
-            <i class="fas fa-search"></i>
-        </button>
-        <button class="profile-settings-btn" id="profileSettingsBtn">
-            <i class="fas fa-cog"></i>
-        </button>
+        <div class="header-left">
+            <button class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <img src="kalesh logo.png" alt="Kalesh Logo" class="app-logo">
+            <h1 class="app-name">Kalesh</h1>
+        </div>
+        <div class="header-right">
+            <button class="search-btn" id="searchBtn" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="profile-settings-btn" id="profileSettingsBtn">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
     </header>
 
-    <!-- Search Panel -->
-    <div id="searchPanel" class="search-panel" aria-hidden="true">
-        <div class="panel-inner">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <input id="searchInput" class="search-input" placeholder="Search users by name or username" aria-label="Search users">
-                <button class="close-search" aria-label="Close search" style="margin-left:8px;padding:8px;border-radius:8px;border:none;background:none;">✕</button>
+    <!-- Toggle Section -->
+    <div class="toggle-section">
+        <button class="toggle-btn active" id="recentToggle">Recent</button>
+        <button class="toggle-btn" id="popularToggle">Popular</button>
+    </div>
+
+    <!-- Hamburger Menu Overlay -->
+    <div id="hamburgerOverlay" class="hamburger-overlay">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <button class="close-hamburger" id="closeHamburger">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div id="searchResults" class="search-results">
-                <p class="muted">Type a username or name to find users.</p>
+            <div class="hamburger-menu-items">
+                <button class="hamburger-item" data-screen="contactScreen">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </button>
+                <button class="hamburger-item" data-screen="premiumScreen">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                </button>
+                <button class="hamburger-item" data-screen="settingsScreen">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+                <button class="hamburger-item" data-screen="contestScreen">
+                    <i class="fas fa-trophy"></i>
+                    <span>Contest</span>
+                </button>
+                <button class="hamburger-item" data-screen="creditsScreen">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Credits</span>
+                </button>
             </div>
         </div>
     </div>
@@ -2833,6 +3654,217 @@
             </button>
         </div>
     </section>
+
+    <!-- Contact Screen -->
+    <section id="contactScreen" class="screen">
+        <div class="contact-container">
+            <h2 class="text-center mb-10">Contact Us</h2>
+            <div class="form-group">
+                <label class="form-label" for="contactName">Name</label>
+                <input type="text" id="contactName" class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contactMobile">Mobile Number</label>
+                <input type="tel" id="contactMobile" class="form-input" placeholder="+91 9876543210">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contactMessage">Message</label>
+                <textarea id="contactMessage" class="form-input" rows="4" placeholder="How can we help you?"></textarea>
+            </div>
+            <button class="contact-submit-btn" id="contactSubmit">Send Message</button>
+        </div>
+    </section>
+
+    <!-- Premium Screen -->
+    <section id="premiumScreen" class="screen">
+        <div class="premium-container">
+            <h2 class="text-center mb-10">Premium Plans</h2>
+            <div class="premium-cards">
+                <div class="premium-card gold-card">
+                    <div class="premium-header">
+                        <h3>Gold Pass</h3>
+                        <div class="premium-price">₹29<span>/month</span></div>
+                    </div>
+                    <div class="premium-features">
+                        <div class="feature-item"><i class="fas fa-check"></i> 12 polls daily</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> All 10 vote options unlocked</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> Special profile badge</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> 10 message requests</div>
+                    </div>
+                    <button class="premium-btn gold-btn">Subscribe Gold</button>
+                </div>
+                <div class="premium-card ultra-card">
+                    <div class="premium-header">
+                        <h3>Ultra Pass</h3>
+                        <div class="premium-price">₹69<span>/month</span></div>
+                    </div>
+                    <div class="premium-features">
+                        <div class="feature-item"><i class="fas fa-check"></i> 25 polls daily</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> All 10 vote options unlocked</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> Special profile badge</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> 25 message requests</div>
+                        <div class="feature-item"><i class="fas fa-check"></i> Priority in contests</div>
+                    </div>
+                    <button class="premium-btn ultra-btn">Subscribe Ultra</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contest Screen -->
+    <section id="contestScreen" class="screen">
+        <div class="contest-container">
+            <h2 class="text-center mb-10">Contest Registration</h2>
+            <div class="form-group">
+                <label class="form-label" for="contestName">Full Name</label>
+                <input type="text" id="contestName" class="form-input" placeholder="Your full name">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contestEmail">Email</label>
+                <input type="email" id="contestEmail" class="form-input" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contestImage">Contest Image</label>
+                <input type="file" id="contestImage" class="form-input" accept="image/*">
+                <img id="contestImagePreview" class="image-preview" alt="Contest image preview">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="contestDescription">Description</label>
+                <textarea id="contestDescription" class="form-input" rows="3" placeholder="Tell us about yourself and why you should win"></textarea>
+            </div>
+            <button class="contest-submit-btn" id="contestSubmit">Register for Contest</button>
+        </div>
+    </section>
+
+    <!-- Credits Screen -->
+    <section id="creditsScreen" class="screen">
+        <div class="credits-container">
+            <h2 class="text-center mb-20">Credits</h2>
+            <div class="credits-content">
+                <div class="credit-item">
+                    <h3>CEO</h3>
+                    <p>Shikhar Dixit</p>
+                </div>
+                <div class="credit-item">
+                    <h3>CFO</h3>
+                    <p>Swatantra Singh</p>
+                </div>
+                <div class="credit-item">
+                    <h3>COO</h3>
+                    <p>Nishkarsh Mishra</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Android Developer</h3>
+                    <p>Sheelu Singh</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Backend Developer</h3>
+                    <p>Mridul Mishra</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Inspired By</h3>
+                    <p>Cosmicpoll</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmationPopup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>Confirm Action</h3>
+                <button class="popup-close" id="confirmationClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-body">
+                <p id="confirmationMessage">Are you sure you want to delete this poll?</p>
+            </div>
+            <div class="popup-footer">
+                <button class="popup-btn cancel-btn" id="confirmationCancel">Cancel</button>
+                <button class="popup-btn confirm-btn" id="confirmationConfirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Popup -->
+    <div id="reportPopup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>Report Poll</h3>
+                <button class="popup-close" id="reportClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-body">
+                <p>Please select the reason for reporting this poll:</p>
+                <div class="report-options">
+                    <label class="report-option">
+                        <input type="checkbox" name="reportReason" value="bullying">
+                        <span>Bullying or Harassment</span>
+                    </label>
+                    <label class="report-option">
+                        <input type="checkbox" name="reportReason" value="sexual_abuse">
+                        <span>Sexual Abuse or Inappropriate Content</span>
+                    </label>
+                    <label class="report-option">
+                        <input type="checkbox" name="reportReason" value="inappropriate">
+                        <span>Inappropriate Behavior</span>
+                    </label>
+                    <label class="report-option">
+                        <input type="checkbox" name="reportReason" value="other">
+                        <span>Other</span>
+                    </label>
+                </div>
+                <div class="report-details" id="reportDetails" style="display: none;">
+                    <label for="reportMessage">Please provide details:</label>
+                    <textarea id="reportMessage" placeholder="Describe the issue..."></textarea>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="popup-btn cancel-btn" id="reportCancel">Cancel</button>
+                <button class="popup-btn confirm-btn" id="reportSubmit">Submit Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Poll Popup -->
+    <div id="editPollPopup" class="popup-overlay">
+        <div class="popup-content large-popup">
+            <div class="popup-header">
+                <h3>Edit Poll</h3>
+                <button class="popup-close" id="editPollClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="popup-body">
+                <div class="form-group">
+                    <label class="form-label" for="editPollQuestion">Poll Question</label>
+                    <input type="text" id="editPollQuestion" class="form-input" placeholder="Ask something...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editPollImage">Change Image (Optional)</label>
+                    <input type="file" id="editPollImage" class="form-input" accept="image/*">
+                    <img id="editPollImagePreview" class="image-preview" alt="Poll image preview">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Poll Options</label>
+                    <div id="editPollOptionsContainer">
+                        <!-- Options will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="popup-btn cancel-btn" id="editPollCancel">Cancel</button>
+                <button class="popup-btn confirm-btn" id="editPollSave">Save Changes</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Comment Screen -->
     <div class="comment-screen" id="commentScreen">
@@ -3616,12 +4648,36 @@
             location.reload();
         }
 
+        // Load polls function
+        function loadPolls(type) {
+            const pollsContainer = document.getElementById('pollsContainer');
+            if (!pollsContainer) return;
+
+            let pollsToShow = [];
+            if (type === 'popular') {
+                // Sort by impressions + votes for popular
+                pollsToShow = [...appState.polls].sort((a, b) => {
+                    const aScore = a.impressions + a.options.reduce((sum, opt) => sum + opt.votes, 0);
+                    const bScore = b.impressions + b.options.reduce((sum, opt) => sum + opt.votes, 0);
+                    return bScore - aScore;
+                });
+            } else {
+                // Recent polls (default)
+                pollsToShow = [...appState.polls].sort((a, b) => {
+                    // In a real app, you'd sort by timestamp
+                    return b.id - a.id; // Simple sort by ID for demo
+                });
+            }
+
+            renderPolls(pollsToShow);
+        }
+
         // Initialize the app
         function initApp() {
             // Load saved data first
             loadDataFromStorage();
 
-            renderPolls();
+            loadPolls('recent'); // Load recent polls by default
             renderUserPolls();
             renderUserComments();
             renderMessageUsers();
@@ -3649,10 +4705,13 @@
         }
 
         // Render polls to the home screen
-        function renderPolls() {
+        function renderPolls(pollsToRender = null) {
+            const polls = pollsToRender || appState.polls;
+            if (!pollsContainer) return;
+            
             pollsContainer.innerHTML = '';
             
-            if (appState.polls.length === 0) {
+            if (polls.length === 0) {
                 pollsContainer.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-poll"></i>
@@ -3662,12 +4721,7 @@
                 return;
             }
             
-            // Sort polls by timestamp (newest first)
-            const sortedPolls = [...appState.polls].sort((a, b) => {
-                return new Date(b.timestamp) - new Date(a.timestamp);
-            });
-            
-            sortedPolls.forEach(poll => {
+            polls.forEach(poll => {
                 const pollElement = createPollElement(poll);
                 pollsContainer.appendChild(pollElement);
             });
@@ -4186,13 +5240,8 @@
                 item.addEventListener('click', () => {
                     const targetScreen = item.getAttribute('data-screen');
                     
-                    // Update active nav item
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    item.classList.add('active');
-                    
-                    // Show target screen
-                    screens.forEach(screen => screen.classList.remove('active'));
-                    document.getElementById(targetScreen).classList.add('active');
+                    // Use showScreen function to handle screen switching and toggle visibility
+                    showScreen(targetScreen);
                     
                     // Show message user list when navigating to messages screen
                     if (targetScreen === 'messagesScreen') {
@@ -4211,10 +5260,426 @@
 
             // Profile settings button
             profileSettingsBtn.addEventListener('click', () => {
-                navItems.forEach(nav => nav.classList.remove('active'));
-                document.querySelector('.nav-item[data-screen="profileScreen"]').classList.add('active');
-                screens.forEach(screen => screen.classList.remove('active'));
-                document.getElementById('settingsScreen').classList.add('active');
+                showScreen('settingsScreen');
+            });
+
+            // Hamburger menu
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const hamburgerOverlay = document.getElementById('hamburgerOverlay');
+            const closeHamburger = document.getElementById('closeHamburger');
+            const hamburgerItems = document.querySelectorAll('.hamburger-item');
+
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', () => {
+                    hamburgerOverlay.style.display = 'flex';
+                });
+            }
+
+            if (closeHamburger) {
+                closeHamburger.addEventListener('click', () => {
+                    hamburgerOverlay.style.display = 'none';
+                });
+            }
+
+            if (hamburgerOverlay) {
+                hamburgerOverlay.addEventListener('click', (e) => {
+                    if (e.target === hamburgerOverlay) {
+                        hamburgerOverlay.style.display = 'none';
+                    }
+                });
+            }
+
+            hamburgerItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const screenId = item.dataset.screen;
+                    if (screenId) {
+                        showScreen(screenId);
+                        hamburgerOverlay.style.display = 'none';
+                    }
+                });
+            });
+
+            // Toggle buttons
+            const recentToggle = document.getElementById('recentToggle');
+            const popularToggle = document.getElementById('popularToggle');
+
+            if (recentToggle) {
+                recentToggle.addEventListener('click', () => {
+                    recentToggle.classList.add('active');
+                    popularToggle.classList.remove('active');
+                    loadPolls('recent');
+                });
+            }
+
+            if (popularToggle) {
+                popularToggle.addEventListener('click', () => {
+                    popularToggle.classList.add('active');
+                    recentToggle.classList.remove('active');
+                    loadPolls('popular');
+                });
+            }
+
+            // Popup handlers
+            const confirmationPopup = document.getElementById('confirmationPopup');
+            const reportPopup = document.getElementById('reportPopup');
+            const editPollPopup = document.getElementById('editPollPopup');
+
+            // Confirmation popup
+            const confirmationClose = document.getElementById('confirmationClose');
+            const confirmationCancel = document.getElementById('confirmationCancel');
+            const confirmationConfirm = document.getElementById('confirmationConfirm');
+
+            function closeConfirmationPopup() {
+                confirmationPopup.classList.remove('open');
+            }
+
+            if (confirmationClose) confirmationClose.addEventListener('click', closeConfirmationPopup);
+            if (confirmationCancel) confirmationCancel.addEventListener('click', closeConfirmationPopup);
+
+            if (confirmationPopup) {
+                confirmationPopup.addEventListener('click', (e) => {
+                    if (e.target === confirmationPopup) closeConfirmationPopup();
+                });
+            }
+
+            // Report popup
+            const reportClose = document.getElementById('reportClose');
+            const reportCancel = document.getElementById('reportCancel');
+            const reportSubmit = document.getElementById('reportSubmit');
+            const reportOptions = document.querySelectorAll('input[name="reportReason"]');
+
+            function closeReportPopup() {
+                reportPopup.classList.remove('open');
+            }
+
+            if (reportClose) reportClose.addEventListener('click', closeReportPopup);
+            if (reportCancel) reportCancel.addEventListener('click', closeReportPopup);
+
+            if (reportPopup) {
+                reportPopup.addEventListener('click', (e) => {
+                    if (e.target === reportPopup) closeReportPopup();
+                });
+            }
+
+            reportOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    const reportDetails = document.getElementById('reportDetails');
+                    const otherChecked = document.querySelector('input[value="other"]').checked;
+                    reportDetails.style.display = otherChecked ? 'block' : 'none';
+                });
+            });
+
+            if (reportSubmit) {
+                reportSubmit.addEventListener('click', () => {
+                    const selectedReasons = Array.from(reportOptions)
+                        .filter(option => option.checked)
+                        .map(option => option.value);
+
+                    if (selectedReasons.length === 0) {
+                        alert('Please select at least one reason for reporting.');
+                        return;
+                    }
+
+                    const reportMessage = document.getElementById('reportMessage').value;
+                    if (selectedReasons.includes('other') && !reportMessage.trim()) {
+                        alert('Please provide details for the "Other" reason.');
+                        return;
+                    }
+
+                    // In a real app, this would send the report to the server
+                    alert('Your report has been submitted. Thank you for helping keep our community safe.');
+                    closeReportPopup();
+
+                    // Reset form
+                    reportOptions.forEach(option => option.checked = false);
+                    document.getElementById('reportMessage').value = '';
+                    document.getElementById('reportDetails').style.display = 'none';
+                });
+            }
+
+            // Edit poll popup
+            const editPollClose = document.getElementById('editPollClose');
+            const editPollCancel = document.getElementById('editPollCancel');
+            const editPollSave = document.getElementById('editPollSave');
+
+            function closeEditPollPopup() {
+                editPollPopup.classList.remove('open');
+            }
+
+            if (editPollClose) editPollClose.addEventListener('click', closeEditPollPopup);
+            if (editPollCancel) editPollCancel.addEventListener('click', closeEditPollPopup);
+
+            if (editPollPopup) {
+                editPollPopup.addEventListener('click', (e) => {
+                    if (e.target === editPollPopup) closeEditPollPopup();
+                });
+            }
+
+            if (confirmationConfirm) {
+                confirmationConfirm.addEventListener('click', () => {
+                    if (appState.elementToDelete) {
+                        const pollId = parseInt(appState.elementToDelete.dataset.pollId);
+                        
+                        // Remove from main polls array
+                        appState.polls = appState.polls.filter(p => p.id !== pollId);
+                        
+                        // Remove from user's polls array
+                        appState.userPolls = appState.userPolls.filter(p => p.id !== pollId);
+                        
+                        // Remove associated comments
+                        appState.comments = appState.comments.filter(c => c.pollId !== pollId);
+                        
+                        // Remove from DOM
+                        appState.elementToDelete.remove();
+                        appState.elementToDelete = null;
+                        
+                        // Save to localStorage
+                        try { saveDataToStorage(); } catch (e) { console.error('Error saving after delete', e); }
+                        
+                        // Re-render polls
+                        renderPolls();
+                        renderUserPolls();
+                    }
+                    closeConfirmationPopup();
+                });
+            }
+
+            if (editPollSave) {
+                editPollSave.addEventListener('click', () => {
+                    const pollCard = appState.elementToEdit;
+                    if (!pollCard) return;
+                    
+                    const pollId = parseInt(pollCard.dataset.pollId);
+                    const poll = appState.polls.find(p => p.id === pollId) || 
+                                appState.userPolls.find(p => p.id === pollId);
+                    
+                    if (!poll) return;
+                    
+                    // Get updated question
+                    const newQuestion = document.getElementById('editPollQuestion').value.trim();
+                    if (!newQuestion) {
+                        alert('Please enter a poll question');
+                        return;
+                    }
+                    
+                    // Get updated options
+                    const optionInputs = document.querySelectorAll('#editPollOptionsContainer .poll-option-input-field');
+                    const newOptions = [];
+                    
+                    optionInputs.forEach(input => {
+                        if (input.value.trim()) {
+                            newOptions.push(input.value.trim());
+                        }
+                    });
+                    
+                    if (newOptions.length < 2) {
+                        alert('Please add at least 2 options');
+                        return;
+                    }
+                    
+                    // Update poll data
+                    poll.question = newQuestion;
+                    
+                    // Preserve existing vote counts for matching options, reset for new ones
+                    const updatedOptions = newOptions.map((text, index) => {
+                        const existingOption = poll.options.find(opt => opt.text === text);
+                        return {
+                            text: text,
+                            votes: existingOption ? existingOption.votes : 0
+                        };
+                    });
+                    
+                    poll.options = updatedOptions;
+                    
+                    // Update image if changed
+                    const imagePreview = document.getElementById('editPollImagePreview');
+                    if (imagePreview.style.display === 'block') {
+                        poll.image = imagePreview.src;
+                    } else {
+                        poll.image = null;
+                    }
+                    
+                    // Save to localStorage
+                    try { saveDataToStorage(); } catch (e) { console.error('Error saving edited poll', e); }
+                    
+                    // Re-render polls
+                    renderPolls();
+                    renderUserPolls();
+                    
+                    // Clear edit state
+                    appState.elementToEdit = null;
+                    
+                    alert('Poll updated successfully!');
+                    closeEditPollPopup();
+                });
+            }
+
+            // Open edit poll popup
+            function openEditPollPopup(pollCard) {
+                const pollId = parseInt(pollCard.dataset.pollId);
+                const poll = appState.polls.find(p => p.id === pollId);
+                
+                if (!poll) return;
+
+                // Populate edit form
+                document.getElementById('editPollQuestion').value = poll.question;
+                
+                // Clear existing options
+                const optionsContainer = document.getElementById('editPollOptionsContainer');
+                optionsContainer.innerHTML = '';
+                
+                // Add existing options
+                poll.options.forEach(option => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'poll-option-input';
+                    optionDiv.innerHTML = `
+                        <input type="text" class="form-input poll-option-input-field" value="${option.text}" placeholder="Option">
+                        <button class="remove-option"><i class="fas fa-times"></i></button>
+                    `;
+                    optionsContainer.appendChild(optionDiv);
+                });
+
+                // Show image preview if exists
+                const imagePreview = document.getElementById('editPollImagePreview');
+                if (poll.image) {
+                    imagePreview.src = poll.image;
+                    imagePreview.style.display = 'block';
+                } else {
+                    imagePreview.style.display = 'none';
+                }
+
+                editPollPopup.classList.add('open');
+            }
+
+            // Show screen function
+            function showScreen(screenId) {
+                // Hide all screens
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                
+                // Show target screen
+                const targetScreen = document.getElementById(screenId);
+                if (targetScreen) {
+                    targetScreen.classList.add('active');
+                }
+                
+                // Show/hide toggle section only for home screen
+                const toggleSection = document.querySelector('.toggle-section');
+                if (screenId === 'homeScreen') {
+                    toggleSection.style.display = 'flex';
+                } else {
+                    toggleSection.style.display = 'none';
+                }
+                
+                // Update navigation
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                
+                // Special handling for screens not in main nav
+                if (screenId === 'contactScreen' || screenId === 'premiumScreen' || 
+                    screenId === 'contestScreen' || screenId === 'creditsScreen' ||
+                    screenId === 'settingsScreen' || screenId === 'editProfileScreen') {
+                    // These screens don't have nav items, so just show them
+                    return;
+                }
+            }
+
+            // Contact form handler
+            const contactSubmit = document.getElementById('contactSubmit');
+            if (contactSubmit) {
+                contactSubmit.addEventListener('click', () => {
+                    const name = document.getElementById('contactName').value.trim();
+                    const email = document.getElementById('contactEmail').value.trim();
+                    const mobile = document.getElementById('contactMobile').value.trim();
+                    const message = document.getElementById('contactMessage').value.trim();
+
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields (Name, Email, Message).');
+                        return;
+                    }
+
+                    if (!/\S+@\S+\.\S+/.test(email)) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+
+                    // In a real app, this would send the data to the server
+                    alert('Your request has been sent successfully! Our team will contact you soon.');
+                    
+                    // Reset form
+                    document.getElementById('contactName').value = '';
+                    document.getElementById('contactEmail').value = '';
+                    document.getElementById('contactMobile').value = '';
+                    document.getElementById('contactMessage').value = '';
+                    
+                    // Go back to home screen
+                    showScreen('homeScreen');
+                });
+            }
+
+            // Contest form handler
+            const contestSubmit = document.getElementById('contestSubmit');
+            if (contestSubmit) {
+                contestSubmit.addEventListener('click', () => {
+                    const name = document.getElementById('contestName').value.trim();
+                    const email = document.getElementById('contestEmail').value.trim();
+                    const image = document.getElementById('contestImage').files[0];
+                    const description = document.getElementById('contestDescription').value.trim();
+
+                    if (!name || !email || !description) {
+                        alert('Please fill in all required fields (Name, Email, Description).');
+                        return;
+                    }
+
+                    if (!image) {
+                        alert('Please select an image for your contest entry.');
+                        return;
+                    }
+
+                    // In a real app, this would submit the contest entry
+                    alert('Your contest entry has been submitted successfully! Good luck!');
+                    
+                    // Reset form
+                    document.getElementById('contestName').value = '';
+                    document.getElementById('contestEmail').value = '';
+                    document.getElementById('contestImage').value = '';
+                    document.getElementById('contestDescription').value = '';
+                    document.getElementById('contestImagePreview').src = '';
+                    document.getElementById('contestImagePreview').style.display = 'none';
+                    
+                    // Go back to home screen
+                    showScreen('homeScreen');
+                });
+            }
+
+            // Image preview for contest
+            const contestImageInput = document.getElementById('contestImage');
+            const contestImagePreview = document.getElementById('contestImagePreview');
+            if (contestImageInput && contestImagePreview) {
+                contestImageInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            contestImagePreview.src = e.target.result;
+                            contestImagePreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        contestImagePreview.style.display = 'none';
+                    }
+                });
+            }
+
+            // Premium subscription handlers
+            document.querySelectorAll('.premium-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const planType = btn.classList.contains('gold-btn') ? 'Gold Pass' : 'Ultra Pass';
+                    alert(`Redirecting to payment for ${planType}...`);
+                    // In a real app, this would redirect to payment gateway
+                });
             });
 
             // Search UI setup
@@ -4304,10 +5769,7 @@
 
             // Settings button
             settingsBtn.addEventListener('click', () => {
-                navItems.forEach(nav => nav.classList.remove('active'));
-                document.querySelector('.nav-item[data-screen="profileScreen"]').classList.add('active');
-                screens.forEach(screen => screen.classList.remove('active'));
-                document.getElementById('settingsScreen').classList.add('active');
+                showScreen('settingsScreen');
             });
 
             // Edit Profile button
@@ -4317,7 +5779,7 @@
                 document.getElementById('editGender').value = appState.currentUser.gender;
                 document.getElementById('editPronoun').value = appState.currentUser.pronoun;
                 document.getElementById('editBio').value = appState.currentUser.bio;
-                document.getElementById('editProfileScreen').classList.add('active');
+                showScreen('editProfileScreen');
             });
 
             // Profile Tabs
@@ -4703,10 +6165,7 @@
             chatUserBtn.addEventListener('click', () => {
                 if (appState.currentViewingUser) {
                     // Navigate to messages screen
-                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                    document.querySelector('.nav-item[data-screen="messagesScreen"]').classList.add('active');
-                    document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
-                    document.getElementById('messagesScreen').classList.add('active');
+                    showScreen('messagesScreen');
                     
                     // Open chat with this user
                     openMessageThread(appState.currentViewingUser.id);
@@ -4793,15 +6252,15 @@
                     const parentElement = dropdown.closest('.poll-card, .recent-comment, .comment-item');
                     
                     if (dropdownItem.classList.contains('delete')) {
-                        if (confirm('Are you sure you want to delete this?')) {
-                            // In a real app, this would make an API call
-                            // Remove the element from DOM
-                            parentElement.remove();
-                        }
+                        // Store reference to element to delete
+                        appState.elementToDelete = parentElement;
+                        document.getElementById('confirmationMessage').textContent = 'Are you sure you want to delete this poll? This action cannot be undone.';
+                        confirmationPopup.classList.add('open');
                     } else if (dropdownItem.classList.contains('edit')) {
-                        alert('Edit functionality would open here');
+                        // Open edit poll popup
+                        openEditPollPopup(parentElement);
                     } else if (dropdownItem.classList.contains('report')) {
-                        reportModal.classList.add('active');
+                        reportPopup.classList.add('open');
                     }
                     
                     // Close dropdown
@@ -5533,16 +6992,7 @@
             });
             
             // Close edit screen
-            document.getElementById('editProfileScreen').classList.remove('active');
-            
-            // Re-render profile and polls
-            renderPolls();
-            renderUserPolls();
-            renderUserComments();
-            updateProfileDisplay();
-
-            // Persist updated profile to localStorage
-            try { saveDataToStorage(); } catch (e) { console.error('Error saving profile to storage', e); }
+            showScreen('homeScreen');
         }
 
         // Initialize the app when the page loads
