@@ -315,214 +315,323 @@
             background-color: var(--dark-elements);
         }
 
-        /* Search panel overlay */
-        .search-panel {
-            position: fixed;
-            top: 64px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 300;
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
+        /* Search screen */
+        .search-screen-sticky {
+            position: sticky;
+            top: 72px;
+            z-index: 90;
+            background: var(--light-bg);
+            padding: 8px 0 12px;
+            border-bottom: 1px solid var(--light-border);
+            backdrop-filter: blur(12px);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .dark-mode .search-screen-sticky {
+            background: var(--dark-bg);
+            border-bottom-color: var(--dark-border);
         }
 
-        .search-panel.open {
+        .search-screen-bar {
+            background: linear-gradient(135deg, var(--light-elements) 0%, var(--light-card) 100%);
+            border: 1px solid var(--light-border);
+            border-radius: 999px;
             display: flex;
-            align-items: flex-start;
-            justify-content: center;
-        }
-
-        .search-panel .panel-inner {
-            max-width: 500px;
-            width: 100%;
-            background: var(--light-card);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            margin-top: 20px;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dark-mode .search-panel .panel-inner {
-            background: var(--dark-card);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .search-panel .search-header {
-            display: flex;
-            gap: 12px;
             align-items: center;
-            margin-bottom: 16px;
+            gap: 10px;
+            padding: 0 14px;
+            min-height: 46px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .dark-mode .search-screen-bar {
+            background: linear-gradient(135deg, var(--dark-elements) 0%, var(--dark-card) 100%);
+            border-color: var(--dark-border);
+        }
+
+        .search-screen-bar:focus-within {
+            border-color: var(--light-accent);
+            box-shadow: 0 0 0 2px var(--light-border);
+            transform: translateY(-1px);
+        }
+
+        .dark-mode .search-screen-bar:focus-within {
+            border-color: var(--dark-accent);
+            box-shadow: 0 0 0 2px var(--dark-border);
+        }
+
+        .search-screen-icon {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .dark-mode .search-screen-icon {
+            color: #999;
         }
 
         .search-input {
             flex: 1;
-            padding: 14px 18px;
-            border-radius: 30px;
-            border: 2px solid var(--light-border);
+            padding: 13px 0;
+            border: none;
             font-size: 1rem;
-            background-color: var(--light-elements);
+            background-color: transparent;
             transition: var(--transition);
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--light-accent);
-            background-color: var(--light-bg);
-            box-shadow: 0 0 0 3px rgba(255, 66, 0, 0.1);
         }
 
         .dark-mode .search-input {
-            background-color: var(--dark-elements);
+            color: var(--dark-text);
+        }
+
+        .search-screen-content {
+            display: grid;
+            gap: 14px;
+        }
+
+        .search-section-card {
+            background: linear-gradient(140deg, var(--light-card) 0%, var(--light-elements) 100%);
+            border: 1px solid var(--light-border);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+        }
+
+        .dark-mode .search-section-card {
+            background: linear-gradient(140deg, var(--dark-card) 0%, var(--dark-elements) 100%);
             border-color: var(--dark-border);
-            color: var(--dark-text);
         }
 
-        .dark-mode .search-input:focus {
-            border-color: var(--dark-accent);
-            background-color: var(--dark-bg);
-            box-shadow: 0 0 0 3px rgba(255, 66, 0, 0.2);
-        }
-
-        .search-panel .close-search {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--light-text);
-            cursor: pointer;
-            padding: 8px;
+        .search-section-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .search-panel .close-search:hover {
-            background-color: var(--light-elements);
-            transform: scale(1.1);
-        }
-
-        .dark-mode .search-panel .close-search {
-            color: var(--dark-text);
-        }
-
-        .dark-mode .search-panel .close-search:hover {
-            background-color: var(--dark-elements);
-        }
-
-        .search-results {
-            max-height: 60vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .search-results::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .search-results::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .search-results::-webkit-scrollbar-thumb {
-            background: var(--light-border);
-            border-radius: 3px;
-        }
-
-        .search-results::-webkit-scrollbar-thumb:hover {
             background: var(--light-accent);
+            opacity: 0.08;
+            pointer-events: none;
         }
 
-        .dark-mode .search-results::-webkit-scrollbar-thumb {
+        .dark-mode .search-section-card::before {
+            background: var(--dark-accent);
+            opacity: 0.14;
+        }
+
+        .search-section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .search-section-head h3 {
+            font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+            font-weight: 700;
+        }
+
+        .search-see-all {
+            border: none;
+            background: none;
+            color: var(--light-accent);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.92rem;
+        }
+
+        .dark-mode .search-see-all {
+            color: var(--dark-accent);
+        }
+
+        .search-poll-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .search-poll-row::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .search-poll-row::-webkit-scrollbar-thumb {
+            background: var(--light-border);
+            border-radius: 4px;
+        }
+
+        .dark-mode .search-poll-row::-webkit-scrollbar-thumb {
             background: var(--dark-border);
         }
 
-        .dark-mode .search-results::-webkit-scrollbar-thumb:hover {
-            background: var(--dark-accent);
-        }
-
-        .search-item {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            padding: 12px 16px;
-            border-radius: 12px;
-            cursor: pointer;
+        .search-poll-mini {
+            min-width: clamp(180px, 64vw, 230px);
+            border: 1px solid var(--light-border);
+            border-radius: 10px;
+            padding: 10px;
+            background: linear-gradient(135deg, var(--light-elements) 0%, var(--light-card) 100%);
+            scroll-snap-align: start;
             transition: var(--transition);
-            margin-bottom: 8px;
+            cursor: pointer;
         }
 
-        .search-item:hover {
-            background: var(--light-elements);
-            transform: translateX(4px);
-        }
-
-        .dark-mode .search-item:hover {
-            background: var(--dark-elements);
-        }
-
-        .search-item .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--light-elements);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 2px solid var(--light-border);
-            overflow: hidden;
-        }
-
-        .dark-mode .search-item .avatar {
-            background: var(--dark-elements);
+        .dark-mode .search-poll-mini {
             border-color: var(--dark-border);
+            background: linear-gradient(135deg, var(--dark-elements) 0%, var(--dark-card) 100%);
         }
 
-        .search-item .body {
-            flex: 1;
-            min-width: 0;
+        .search-poll-mini:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
-        .search-item .body > div:first-child {
-            font-weight: 600;
+        .search-poll-mini:focus-visible {
+            outline: 2px solid var(--light-accent);
+            outline-offset: 2px;
+        }
+
+        .dark-mode .search-poll-mini:focus-visible {
+            outline-color: var(--dark-accent);
+        }
+
+        .search-poll-mini h4 {
             font-size: 0.95rem;
-            color: var(--light-text);
-            margin-bottom: 2px;
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
 
-        .dark-mode .search-item .body > div:first-child {
+        .poll-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .poll-split span {
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        .poll-split .left {
+            background: var(--light-accent);
+            color: #fff;
+        }
+
+        .poll-split .right {
+            background: var(--light-border);
+            color: var(--light-text);
+        }
+
+        .dark-mode .poll-split .right {
+            background: var(--dark-border);
             color: var(--dark-text);
         }
 
-        .search-item .muted {
-            color: #888;
-            font-size: 0.85rem;
+        .search-account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--light-border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--light-elements) 0%, var(--light-card) 100%);
+            cursor: pointer;
         }
 
-        .dark-mode .search-item .muted {
+        .search-account-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dark-mode .search-account-item {
+            border-color: var(--dark-border);
+            background: linear-gradient(135deg, var(--dark-elements) 0%, var(--dark-card) 100%);
+        }
+
+        .search-account-user {
+            font-weight: 700;
+        }
+
+        .search-account-meta {
+            font-size: 0.86rem;
+            color: #888;
+        }
+
+        .dark-mode .search-account-meta {
             color: #999;
+        }
+
+        .search-account-badge {
+            background: var(--light-accent);
+            color: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .search-account-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-follow-btn {
+            border: 1px solid var(--light-accent);
+            background: transparent;
+            color: var(--light-accent);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .search-follow-btn.following {
+            background: var(--light-accent);
+            color: #fff;
+        }
+
+        .dark-mode .search-follow-btn {
+            border-color: var(--dark-accent);
+            color: var(--dark-accent);
+        }
+
+        .dark-mode .search-follow-btn.following {
+            background: var(--dark-accent);
+            color: #fff;
+        }
+
+        .poll-card.search-open-target {
+            animation: searchPollPulse 1.6s ease;
+        }
+
+        @keyframes searchPollPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 66, 0, 0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 66, 0, 0.08); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 66, 0, 0); }
+        }
+
+        .search-trending-list {
+            list-style: disc;
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .search-trending-list li {
+            font-weight: 600;
         }
 
         /* Hamburger Menu Overlay */
@@ -1174,6 +1283,58 @@
                 padding: 14px 16px;
                 font-size: 0.95rem;
             }
+
+            .search-screen-sticky {
+                top: 66px;
+                padding: 6px 0 10px;
+            }
+
+            .search-screen-content {
+                gap: 12px;
+            }
+
+            .search-section-card {
+                padding: 12px;
+                border-radius: 10px;
+            }
+
+            .search-section-head {
+                margin-bottom: 8px;
+            }
+
+            .search-poll-row {
+                gap: 8px;
+            }
+
+            .search-poll-mini {
+                min-width: min(78vw, 220px);
+                padding: 9px;
+            }
+
+            .search-poll-mini h4 {
+                font-size: 0.9rem;
+            }
+
+            .search-account-item {
+                padding: 9px 10px;
+            }
+
+            .search-account-actions {
+                gap: 6px;
+            }
+
+            .search-follow-btn {
+                font-size: 0.72rem;
+                padding: 4px 8px;
+            }
+
+            .search-account-user {
+                font-size: 0.95rem;
+            }
+
+            .search-account-meta {
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1206,6 +1367,71 @@
             .engagement-item {
                 padding: 5px 10px;
                 font-size: 0.8rem;
+            }
+
+            .search-screen-sticky {
+                top: 62px;
+                padding: 4px 0 8px;
+            }
+
+            .search-screen-bar {
+                min-height: 42px;
+                padding: 0 12px;
+                gap: 8px;
+            }
+
+            .search-input {
+                font-size: 0.92rem;
+                padding: 11px 0;
+            }
+
+            .search-section-card {
+                padding: 10px;
+            }
+
+            .search-section-head h3 {
+                font-size: 0.92rem;
+            }
+
+            .search-see-all {
+                font-size: 0.82rem;
+            }
+
+            .search-poll-mini {
+                min-width: 80vw;
+            }
+
+            .poll-split {
+                font-size: 0.78rem;
+            }
+
+            .poll-split span {
+                padding: 5px 6px;
+            }
+
+            .search-account-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .search-account-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-account-badge {
+                align-self: flex-start;
+                font-size: 0.72rem;
+                padding: 3px 9px;
+            }
+
+            .search-trending-list {
+                gap: 6px;
+                padding-left: 16px;
+            }
+
+            .search-trending-list li {
+                font-size: 0.9rem;
             }
 
             .premium-card {
@@ -4345,19 +4571,6 @@
         </div>
     </header>
 
-    <!-- Search Panel -->
-    <div class="search-panel" id="searchPanel" aria-hidden="true">
-        <div class="panel-inner">
-            <div class="search-header">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search users...">
-                <button class="close-search" aria-label="Close search">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="search-results" id="searchResults"></div>
-        </div>
-    </div>
-
     <!-- Toggle Section -->
     <div class="toggle-section">
         <button class="toggle-btn active" id="recentToggle">Recent</button>
@@ -4401,6 +4614,86 @@
     <section id="homeScreen" class="screen active">
         <div id="pollsContainer">
             <!-- Polls will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Search Screen -->
+    <section id="searchScreen" class="screen">
+        <div class="search-screen-sticky">
+            <div class="search-screen-bar">
+                <i class="fas fa-search search-screen-icon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search polls, topics, or anonymous users...">
+            </div>
+        </div>
+
+        <div class="search-screen-content">
+            <div class="search-section-card">
+                <div class="search-section-head">
+                    <h3>🔥 Popular Polls</h3>
+                    <button class="search-see-all" id="searchPopularSeeAll">See All</button>
+                </div>
+                <div class="search-poll-row">
+                    <div class="search-poll-mini" data-poll-id="1" role="button" tabindex="0" aria-label="Open poll: Should attendance be compulsory in college?">
+                        <h4>Should attendance be compulsory in college?</h4>
+                        <div class="poll-split">
+                            <span class="left">68% No</span>
+                            <span class="right">32% Yes</span>
+                        </div>
+                    </div>
+                    <div class="search-poll-mini" data-poll-id="2" role="button" tabindex="0" aria-label="Open poll: Is online dating good for relationships?">
+                        <h4>Is online dating good for relationships?</h4>
+                        <div class="poll-split">
+                            <span class="left">45% Yes</span>
+                            <span class="right">55% No</span>
+                        </div>
+                    </div>
+                    <div class="search-poll-mini" data-poll-id="3" role="button" tabindex="0" aria-label="Open poll: Should campus parking be free for students?">
+                        <h4>Should campus parking be free for students?</h4>
+                        <div class="poll-split">
+                            <span class="left">52% Yes</span>
+                            <span class="right">48% No</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-section-card">
+                <div class="search-section-head">
+                    <h3>👥 Popular Anonymous Accounts</h3>
+                </div>
+                <div class="search-account-item" data-user-id="8" role="button" tabindex="0" aria-label="Open @kalesh_official profile">
+                    <div>
+                        <div class="search-account-user">@kalesh_official</div>
+                        <div class="search-account-meta">42 polls • 28K total votes</div>
+                    </div>
+                    <div class="search-account-actions">
+                        <span class="search-account-badge">Official</span>
+                        <button class="search-follow-btn" data-user-id="8">Follow</button>
+                    </div>
+                </div>
+                <div class="search-account-item" data-user-id="9" role="button" tabindex="0" aria-label="Open @mr.ceo profile">
+                    <div>
+                        <div class="search-account-user">@mr.ceo</div>
+                        <div class="search-account-meta">19 polls • 11K total votes</div>
+                    </div>
+                    <div class="search-account-actions">
+                        <span class="search-account-badge">Debate Pro</span>
+                        <button class="search-follow-btn" data-user-id="9">Follow</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-section-card">
+                <div class="search-section-head">
+                    <h3>🔥 Trending on Kalesh</h3>
+                </div>
+                <ul class="search-trending-list">
+                    <li>Hostel curfew debate</li>
+                    <li>Online exams vs. offline exams</li>
+                    <li>College canteen pricing issues</li>
+                    <li>Placement transparency discussions</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -5232,6 +5525,32 @@
                     followers: 950,
                     impressions: 15000,
                     likes: 320,
+                    isFollowing: false
+                },
+                {
+                    id: 8,
+                    name: "Kalesh Official",
+                    username: "kalesh_official",
+                    bio: "Official anonymous community account sharing top debates, hot campus topics, and verified poll highlights.",
+                    profilePic: null,
+                    gender: "prefer-not-to-say",
+                    pronoun: "they-them",
+                    followers: 28000,
+                    impressions: 125000,
+                    likes: 8400,
+                    isFollowing: false
+                },
+                {
+                    id: 9,
+                    name: "Mr. CEO",
+                    username: "mr.ceo",
+                    bio: "Business and career-focused anonymous creator discussing startups, jobs, and leadership takes.",
+                    profilePic: null,
+                    gender: "male",
+                    pronoun: "he-him",
+                    followers: 11000,
+                    impressions: 76000,
+                    likes: 4900,
                     isFollowing: false
                 }
             ],
@@ -6813,90 +7132,112 @@
                 });
             });
 
-            // Search UI setup
+            // Search screen navigation
             const searchBtn = document.getElementById('searchBtn');
-            const searchPanel = document.getElementById('searchPanel');
             const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
+            const searchPopularSeeAll = document.getElementById('searchPopularSeeAll');
+            const searchPollCards = document.querySelectorAll('.search-poll-mini[data-poll-id]');
+            const searchAccountItems = document.querySelectorAll('.search-account-item[data-user-id]');
+            const searchFollowButtons = document.querySelectorAll('.search-follow-btn[data-user-id]');
 
-            function openSearchPanel() {
-                if (!searchPanel) return;
-                searchPanel.classList.add('open');
-                searchPanel.setAttribute('aria-hidden', 'false');
+            function openPollFromSearch(pollId) {
+                showScreen('homeScreen');
+
+                const recentToggle = document.getElementById('recentToggle');
+                const popularToggle = document.getElementById('popularToggle');
+                if (recentToggle && popularToggle) {
+                    recentToggle.classList.remove('active');
+                    popularToggle.classList.add('active');
+                }
+
+                loadPolls('popular');
+
                 setTimeout(() => {
-                    if (searchInput) searchInput.focus();
-                }, 60);
-                renderSearchResults('');
+                    const pollCard = document.querySelector(`.poll-card[data-poll-id="${pollId}"]`);
+                    if (!pollCard) return;
+                    pollCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    pollCard.classList.remove('search-open-target');
+                    void pollCard.offsetWidth;
+                    pollCard.classList.add('search-open-target');
+                }, 120);
             }
 
-            function closeSearchPanel() {
-                if (!searchPanel) return;
-                searchPanel.classList.remove('open');
-                searchPanel.setAttribute('aria-hidden', 'true');
-                if (searchBtn) searchBtn.focus();
-            }
-
-            if (searchBtn) searchBtn.addEventListener('click', (ev) => {
-                ev.stopPropagation();
-                openSearchPanel();
-            });
-
-            if (searchPanel) {
-                const closeBtn = searchPanel.querySelector('.close-search');
-                if (closeBtn) closeBtn.addEventListener('click', (ev) => { ev.stopPropagation(); closeSearchPanel(); });
-                searchPanel.addEventListener('click', (ev) => {
-                    if (ev.target === searchPanel) closeSearchPanel();
+            function syncSearchFollowButtons() {
+                searchFollowButtons.forEach(btn => {
+                    const userId = parseInt(btn.dataset.userId, 10);
+                    const user = appState.dummyUsers.find(u => u.id === userId);
+                    const following = !!(user && user.isFollowing);
+                    btn.textContent = following ? 'Following' : 'Follow';
+                    btn.classList.toggle('following', following);
                 });
             }
 
-            if (searchInput) {
-                searchInput.addEventListener('input', (ev) => {
-                    renderSearchResults(ev.target.value);
+            if (searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    showScreen('searchScreen');
+                    setTimeout(() => {
+                        if (searchInput) searchInput.focus();
+                    }, 60);
                 });
-                searchInput.addEventListener('keydown', (ev) => {
-                    if (ev.key === 'Escape') closeSearchPanel();
-                    if (ev.key === 'Enter') {
-                        const first = searchResults && searchResults.querySelector('.search-item');
-                        if (first) first.click();
+            }
+
+            if (searchPopularSeeAll) {
+                searchPopularSeeAll.addEventListener('click', () => {
+                    showScreen('homeScreen');
+                    const recentToggle = document.getElementById('recentToggle');
+                    const popularToggle = document.getElementById('popularToggle');
+                    if (recentToggle && popularToggle) {
+                        recentToggle.classList.remove('active');
+                        popularToggle.classList.add('active');
+                    }
+                    loadPolls('popular');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            searchPollCards.forEach(card => {
+                const pollId = parseInt(card.dataset.pollId, 10);
+                if (Number.isNaN(pollId)) return;
+                card.addEventListener('click', () => openPollFromSearch(pollId));
+                card.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter' || ev.key === ' ') {
+                        ev.preventDefault();
+                        openPollFromSearch(pollId);
                     }
                 });
-            }
+            });
 
-            function renderSearchResults(query) {
-                if (!searchResults) return;
-                const q = (query || '').trim().toLowerCase();
-                // Search among dummyUsers (messaging users) and include current user by username
-                const users = (appState && Array.isArray(appState.dummyUsers)) ? appState.dummyUsers : [];
-                searchResults.innerHTML = '';
-                if (!q) {
-                    searchResults.innerHTML = '<p class="muted">Type a username or name to find users.</p>';
-                    return;
-                }
-                const matches = users.filter(u => {
-                    const uname = (u.username || '').toLowerCase();
-                    const name = (u.name || '').toLowerCase();
-                    return uname.includes(q) || name.includes(q);
+            searchAccountItems.forEach(item => {
+                const userId = parseInt(item.dataset.userId, 10);
+                if (Number.isNaN(userId)) return;
+                item.addEventListener('click', () => {
+                    openUserProfile(userId);
                 });
-                if (matches.length === 0) {
-                    searchResults.innerHTML = '<p class="muted">No users found</p>';
-                    return;
-                }
-                matches.forEach(u => {
-                    const item = document.createElement('div');
-                    item.className = 'search-item';
-                    item.tabIndex = 0;
-                    item.innerHTML = `\n                        <div class="avatar">${u.profilePic ? `<img src="${u.profilePic}" alt="${u.username}" style="width:100%;height:100%;border-radius:50%;">` : '<i class="fas fa-user"></i>'}</div>\n                        <div class="body">\n                            <div><strong>@${u.username || ''}</strong></div>\n                            <div class="muted">${u.name || ''}</div>\n                        </div>`;
-                    item.addEventListener('click', () => {
-                        // Open user profile by id if available
-                        if (typeof openUserProfile === 'function') {
-                            openUserProfile(u.id);
-                        }
-                        closeSearchPanel();
-                    });
-                    item.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') item.click(); });
-                    searchResults.appendChild(item);
+                item.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter' || ev.key === ' ') {
+                        ev.preventDefault();
+                        openUserProfile(userId);
+                    }
                 });
-            }
+            });
+
+            searchFollowButtons.forEach(btn => {
+                btn.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    const userId = parseInt(btn.dataset.userId, 10);
+                    if (Number.isNaN(userId)) return;
+
+                    const user = appState.dummyUsers.find(u => u.id === userId);
+                    if (!user) return;
+
+                    user.isFollowing = !user.isFollowing;
+                    user.followers += user.isFollowing ? 1 : -1;
+                    syncSearchFollowButtons();
+                    openUserProfile(userId);
+                });
+            });
+
+            syncSearchFollowButtons();
 
             // Edit Profile button
             editProfileBtn.addEventListener('click', () => {
